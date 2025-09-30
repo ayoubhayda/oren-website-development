@@ -53,10 +53,10 @@ export function Footer() {
 
             {/* Newsletter */}
             <div className="space-y-2">
-              <p className="text-sm font-medium text-foreground">Stay updated</p>
+              <p className="text-sm font-medium text-foreground">{t("footer.stayUpdated")}</p>
               <div className="flex gap-2">
-                <Input type="email" placeholder="Enter your email" className="max-w-xs" />
-                <Button>Subscribe</Button>
+                <Input type="email" placeholder={t("footer.emailPlaceholder")} className="max-w-xs" />
+                <Button>{t("footer.subscribe")}</Button>
               </div>
             </div>
           </div>

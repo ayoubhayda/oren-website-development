@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { CTASection } from "@/components/cta-section"
+// Will use static text for now since service details aren't in translation file
 
 const services = [
   {

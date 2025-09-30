@@ -12,8 +12,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 import { useState } from "react"
+import { useLanguage } from "@/components/language-provider"
 
 export default function ContactPage() {
+  const { t } = useLanguage()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -42,11 +44,8 @@ export default function ContactPage() {
         <section className="pt-32 pb-20 lg:pt-40 lg:pb-32 bg-gradient-to-b from-muted/50 to-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center space-y-6">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground">Get in Touch</h1>
-              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                Let's discuss your project and create something amazing together. We're here to help bring your vision
-                to life.
-              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground">{t("contact.title")}</h1>
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">{t("contact.description")}</p>
             </div>
           </div>
         </section>
@@ -58,14 +57,14 @@ export default function ContactPage() {
               {/* Contact Information */}
               <div className="lg:col-span-1 space-y-8">
                 <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-6">Contact Information</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-6">{t("contact.contactInfo")}</h2>
                   <div className="space-y-6">
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                         <Mail className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="font-medium text-foreground mb-1">Email</p>
+                        <p className="font-medium text-foreground mb-1">{t("contact.email")}</p>
                         <a
                           href="mailto:hello@oren.com"
                           className="text-muted-foreground hover:text-primary transition-colors"
@@ -80,7 +79,7 @@ export default function ContactPage() {
                         <Phone className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="font-medium text-foreground mb-1">Phone</p>
+                        <p className="font-medium text-foreground mb-1">{t("contact.phone")}</p>
                         <a
                           href="tel:+1234567890"
                           className="text-muted-foreground hover:text-primary transition-colors"
@@ -95,7 +94,7 @@ export default function ContactPage() {
                         <MapPin className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="font-medium text-foreground mb-1">Office</p>
+                        <p className="font-medium text-foreground mb-1">{t("contact.office")}</p>
                         <p className="text-muted-foreground">
                           123 Business Street
                           <br />
@@ -110,11 +109,11 @@ export default function ContactPage() {
 
                 <Card className="border-border bg-primary/5">
                   <CardContent className="pt-6">
-                    <h3 className="font-semibold text-foreground mb-2">Business Hours</h3>
+                    <h3 className="font-semibold text-foreground mb-2">{t("contact.businessHours")}</h3>
                     <div className="space-y-1 text-sm text-muted-foreground">
-                      <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                      <p>Saturday: 10:00 AM - 4:00 PM</p>
-                      <p>Sunday: Closed</p>
+                      <p>{t("contact.weekdays")}</p>
+                      <p>{t("contact.saturday")}</p>
+                      <p>{t("contact.sunday")}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -128,73 +127,83 @@ export default function ContactPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <Label htmlFor="name">
-                            Name <span className="text-destructive">*</span>
+                            {t("contact.form.name")} <span className="text-destructive">*</span>
                           </Label>
-                          <Input id="name" name="name" placeholder="John Doe" required />
+                          <Input id="name" name="name" placeholder={t("contact.form.namePlaceholder")} required />
                         </div>
 
                         <div className="space-y-2">
-                          <Label htmlFor="company">Company</Label>
-                          <Input id="company" name="company" placeholder="Your Company" />
+                          <Label htmlFor="company">{t("contact.form.company")}</Label>
+                          <Input id="company" name="company" placeholder={t("contact.form.companyPlaceholder")} />
                         </div>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <Label htmlFor="email">
-                            Email <span className="text-destructive">*</span>
+                            {t("contact.form.email")} <span className="text-destructive">*</span>
                           </Label>
-                          <Input id="email" name="email" type="email" placeholder="john@example.com" required />
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder={t("contact.form.emailPlaceholder")}
+                            required
+                          />
                         </div>
 
                         <div className="space-y-2">
-                          <Label htmlFor="phone">Phone</Label>
-                          <Input id="phone" name="phone" type="tel" placeholder="+1 (234) 567-890" />
+                          <Label htmlFor="phone">{t("contact.form.phone")}</Label>
+                          <Input id="phone" name="phone" type="tel" placeholder={t("contact.form.phonePlaceholder")} />
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="service">Service of Interest</Label>
+                        <Label htmlFor="service">{t("contact.form.service")}</Label>
                         <Select name="service">
                           <SelectTrigger id="service">
-                            <SelectValue placeholder="Select a service" />
+                            <SelectValue placeholder={t("contact.form.servicePlaceholder")} />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="web-development">Web Development</SelectItem>
-                            <SelectItem value="custom-platforms">Custom Platforms</SelectItem>
-                            <SelectItem value="ecommerce">E-commerce Solutions</SelectItem>
-                            <SelectItem value="digital-marketing">Digital Marketing</SelectItem>
-                            <SelectItem value="social-media">Social Media Management</SelectItem>
-                            <SelectItem value="design">UI/UX Design</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
+                            <SelectItem value="web-development">{t("contact.form.services.webDev")}</SelectItem>
+                            <SelectItem value="custom-platforms">
+                              {t("contact.form.services.customPlatforms")}
+                            </SelectItem>
+                            <SelectItem value="ecommerce">{t("contact.form.services.ecommerce")}</SelectItem>
+                            <SelectItem value="digital-marketing">
+                              {t("contact.form.services.digitalMarketing")}
+                            </SelectItem>
+                            <SelectItem value="social-media">{t("contact.form.services.socialMedia")}</SelectItem>
+                            <SelectItem value="design">{t("contact.form.services.design")}</SelectItem>
+                            <SelectItem value="other">{t("contact.form.services.other")}</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="budget">Budget Range</Label>
+                        <Label htmlFor="budget">{t("contact.form.budget")}</Label>
                         <Select name="budget">
                           <SelectTrigger id="budget">
-                            <SelectValue placeholder="Select budget range" />
+                            <SelectValue placeholder={t("contact.form.budgetPlaceholder")} />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
-                            <SelectItem value="10k-25k">$10,000 - $25,000</SelectItem>
-                            <SelectItem value="25k-50k">$25,000 - $50,000</SelectItem>
-                            <SelectItem value="50k+">$50,000+</SelectItem>
-                            <SelectItem value="not-sure">Not sure yet</SelectItem>
+                            <SelectItem value="5k-10k">{t("contact.form.budgetRanges.range1")}</SelectItem>
+                            <SelectItem value="10k-25k">{t("contact.form.budgetRanges.range2")}</SelectItem>
+                            <SelectItem value="25k-50k">{t("contact.form.budgetRanges.range3")}</SelectItem>
+                            <SelectItem value="50k+">{t("contact.form.budgetRanges.range4")}</SelectItem>
+                            <SelectItem value="not-sure">{t("contact.form.budgetRanges.notSure")}</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
 
                       <div className="space-y-2">
                         <Label htmlFor="message">
-                          Message <span className="text-destructive">*</span>
+                          {t("contact.form.message")} <span className="text-destructive">*</span>
                         </Label>
                         <Textarea
                           id="message"
                           name="message"
-                          placeholder="Tell us about your project..."
+                          placeholder={t("contact.form.messagePlaceholder")}
                           rows={6}
                           required
                         />
@@ -202,20 +211,20 @@ export default function ContactPage() {
 
                       <Button type="submit" size="lg" className="w-full" disabled={isSubmitting || isSubmitted}>
                         {isSubmitting ? (
-                          "Sending..."
+                          t("contact.form.sending")
                         ) : isSubmitted ? (
-                          "Message Sent!"
+                          t("contact.form.sent")
                         ) : (
                           <>
                             <Send className="mr-2 h-4 w-4" />
-                            Send Message
+                            {t("contact.form.submit")}
                           </>
                         )}
                       </Button>
 
                       {isSubmitted && (
                         <p className="text-sm text-center text-green-600 dark:text-green-400">
-                          Thank you for your message! We'll get back to you soon.
+                          {t("contact.form.successMessage")}
                         </p>
                       )}
                     </form>

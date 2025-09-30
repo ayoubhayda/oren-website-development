@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Calendar, Clock, Search } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
 
 const categories = ["All", "Web Development", "Design", "Marketing", "Technology"]
 
@@ -80,6 +81,7 @@ const posts = [
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
+  const { t } = useLanguage()
 
   const filteredPosts = posts.filter((post) => {
     const matchesCategory = selectedCategory === "All" || post.category === selectedCategory
@@ -115,7 +117,7 @@ export default function BlogPage() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder="Search articles..."
+                  placeholder={t("blog.searchPlaceholder")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10"
@@ -205,8 +207,8 @@ export default function BlogPage() {
                 inbox.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <Input type="email" placeholder="Enter your email" className="flex-1" />
-                <Button>Subscribe</Button>
+                <Input type="email" placeholder={t("footer.emailPlaceholder")} className="flex-1" />
+                <Button>{t("footer.subscribe")}</Button>
               </div>
             </div>
           </div>

@@ -8,6 +8,7 @@ import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { useLanguage } from "@/components/language-provider"
 
 const categories = ["All", "Web Development", "E-commerce", "SaaS", "Corporate", "Marketing"]
 
@@ -69,6 +70,7 @@ const projects = [
 ]
 
 export default function PortfolioPage() {
+  const { t } = useLanguage()
   const [selectedCategory, setSelectedCategory] = useState("All")
 
   const filteredProjects =
@@ -166,7 +168,7 @@ export default function PortfolioPage() {
                 Let's create something amazing together. Get in touch to discuss your project requirements.
               </p>
               <Button size="lg" asChild>
-                <Link href="/contact">Get Started</Link>
+                <Link href="/contact">{t("cta.getStarted")}</Link>
               </Button>
             </div>
           </div>
