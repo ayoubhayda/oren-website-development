@@ -43,7 +43,6 @@ export function useLanguage() {
 const translations: Record<Language, Record<string, string>> = {
   en: {
     // Navigation
-    "nav.home": "Home",
     "nav.services": "Services",
     "nav.portfolio": "Portfolio",
     "nav.about": "About",
@@ -184,7 +183,6 @@ const translations: Record<Language, Record<string, string>> = {
   },
   ar: {
     // Navigation
-    "nav.home": "الرئيسية",
     "nav.services": "الخدمات",
     "nav.portfolio": "الأعمال",
     "nav.about": "من نحن",
@@ -320,7 +318,6 @@ const translations: Record<Language, Record<string, string>> = {
   },
   fr: {
     // Navigation
-    "nav.home": "Accueil",
     "nav.services": "Services",
     "nav.portfolio": "Portfolio",
     "nav.about": "À propos",
